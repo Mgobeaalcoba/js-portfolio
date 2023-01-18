@@ -1,7 +1,8 @@
 /* Modelo de archivo de config de webpack */
 
 const path = require('path');
-const { ModuleFilenameHelpers } = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
     entry: './src/index.js',
@@ -21,7 +22,22 @@ module.exports = {
                 use: {
                     loader: 'babel-loader'
                 }
+            },
+            {
+                test: /\.css$|.styl/i,
+                use: [MiniCssExtractPlugin.loader,
+                'css-loader',
+                'stylus-loader'
+            ],
             }
         ]
-    }
+    },
+    plugins: [
+        new HtmlWebpackPlugin({
+            inject: true,
+            template: './public/index.html',
+            filename: './index.html'
+        }),
+        new MiniCssExtractPlugin(),
+    ]
 }

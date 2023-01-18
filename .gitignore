@@ -1,3 +1,11 @@
+### vscode ###
+
+.vscode
+
+### Node ###
+
+node_modules
+
 # Logs
 logs
 *.log
